@@ -1,0 +1,56 @@
+###################################################
+#                                                 #
+#     WS2811 эффекты: гирлянда и елка             #
+#                                                 #
+###################################################
+
+- alias: WS2811 string
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.dver
+      from: 'off'
+      to: 'on'
+  condition:
+    - condition: numeric_state
+      entity_id: 'sensor.osveshchennost_u_okna'
+      below: 1500 #ниже
+  action:
+    - service: homeassistant.turn_on
+      data:
+         entity_id: group.new_year #light.girlianda_ws2811
+         brightness: 255
+         effect: Rainbow Effect With Custom Values
+    - delay: '00:00:25'
+    - service: homeassistant.turn_on
+      data:
+         entity_id: group.new_year
+         brightness: 255
+         effect: Color Wipe Effect With Custom Values
+    - delay: '00:00:13'
+    - service: homeassistant.turn_off
+      entity_id: group.new_year
+
+- alias: Table lamp ON
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.dver
+      from: 'off'
+      to: 'on'
+  condition:
+    - condition: numeric_state
+      entity_id: 'sensor.osveshchennost_u_okna'
+      below: 90 #ниже
+  action:
+    - service: homeassistant.turn_on
+      entity_id: switch.potolochnaia_lampa
+
+- alias: Table lamp OFF
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.dver
+      from: 'on'
+      to: 'off'
+  condition: []
+  action:
+    - service: homeassistant.turn_off
+      entity_id: switch.potolochnaia_lampa
