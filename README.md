@@ -4,11 +4,11 @@
 
 ______________
 
-# Прошивка ESPHome для WS
+# Прошивка ESPHome для ESP8266
 Использую [ESPHome Hass.io Add-On](https://github.com/esphome/hassio) для компиляции и выбрал конкретно эту прошивку из-за элементарной интеграции в Home Assistant:
 
-[tda7492_speakers.yaml](tda7492_speakers.yaml)
+[ws2811_string.yaml](ws2811_string.yaml)
 
-![ESPHome.png](ESPHome.png)
+[ws2811_strip.yaml](ws2811_strip.yaml)
 
 # Фотографии
